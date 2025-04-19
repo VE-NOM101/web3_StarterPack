@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config(); // Load .env variables
 
 task("accounts", "Prints the list of accounts").setAction(
   async (taskArgs, hre) => {
@@ -26,8 +27,8 @@ module.exports = {
   networks: {
     hardhat: {},
     sepolia: {
-      url: "https://eth-sepolia.g.alchemy.com/v2/xobN7-uuWALX3Avn9K-YvSMnUjrfj0pI",
-      accounts: ["53f622b9df6a59f3e6473d7a6e668261732f66704172083d9db26f678031a668"],
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      accounts: [process.env.PRIVATE_ACCOUNT_KEY1],
     }
   },
 };
