@@ -17,7 +17,7 @@ contract Token {
         owner = msg.sender;
     }
 
-    function transfer(address to, uint256 amount) external {
+    function transfer(address to, uint256 amount) external returns(bool) {
         console.log("**Sender balance is %s tokens**", balances[msg.sender]);
         console.log(
             "**Sender is sending %s tokens to %s address**",
@@ -28,6 +28,7 @@ contract Token {
         require(balances[msg.sender] >= amount, "Not enough tokens");
         balances[msg.sender] -= amount; //balances[msg.sender]=balances[msg.sender]-amount;
         balances[to] += amount;
+        return true;
     }
 
     function balanceOf(address account) external view returns (uint256) {
